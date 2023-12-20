@@ -1,0 +1,35 @@
+
+main{
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    background-color: var(--main-bc-color1);
+}
+.blog-title{
+    min-height: 300px;
+    padding: 0 100px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 2rem;
+}
+.blog-title img{
+    width: 624px;
+    height: 200px;
+    align-self: flex-end;
+}
+
+
+.menu-box{
+    width: 100%;
+    height: auto;
+}
+menu{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
