@@ -3,6 +3,10 @@ main{
     width: 100%;
     min-height: calc(100vh - 80px);
     background-color: var(--main-bc-color1);
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
 }
 .blog-title{
     min-height: 300px;
@@ -32,4 +36,13 @@ menu{
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+}
+
+
+.blogs-box{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(408px, 1fr));
+    grid-template-rows: auto;
+    gap: 32px;
+    justify-items: center;
 }
