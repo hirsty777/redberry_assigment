@@ -1,6 +1,6 @@
 const blogsUrl = `https://api.blog.redberryinternship.ge/api/blogs`
 const categoriesUrl = 'https://api.blog.redberryinternship.ge/api/categories'
-const token = '4467c3bc01c8c016481658a2fe80e00964a2f2ec30f4db589f6c1b8de79544f6'
+const token = 'e0745b43af1331df063d656ab0179483c09f606d894873c76c5f2f2f85bc58bb'
 
 const fethBlogs = async () => {
     try{

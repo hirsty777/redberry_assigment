@@ -1,0 +1,136 @@
+.wrapper{
+    width: 100%;
+    min-height: 100vh;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+    background-color: var(--main-bc-color1);
+}
+
+.blog{
+    width: 720px;
+    min-height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+
+.image-div{
+    width: 100%;
+    height: 328px;
+}
+    .image-div img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 12px;
+    }
+
+.author{
+    font-size: 16px;
+    font-weight: 500;
+    color: #1A1A1F;
+    line-height: 20px;
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+}
+.date, .dot, .email{
+    font-size: 12px;
+    font-weight: 400;
+    color: #85858D;
+    line-height: 26px;
+}
+.dot{
+    font-size: 8px;
+}
+
+.categories{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    row-gap: 5px;
+}
+    .categories div{
+        height: 28px;
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+.description{
+    font-size: 16px;
+    font-weight: 400;
+    color: #404049;
+    line-height: 28px;
+}
+
+/* similar blogs bapenl*/
+.similar-blogs-box{
+    width: 1288px;
+    padding-bottom: 200px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+.similar-blogs{
+    width: 1288px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 32px;
+    transition: transform  0.3s;
+}
+
+.similar-blogs-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.arrows-box{
+    display: flex;
+    flex-direction: row;
+    column-gap: 24px;
+}
+.right-box{
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    .right-box div{
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid #FFFFFF;
+        border-bottom: 2px solid #FFFFFF;
+        -webkit-transform: rotate(-45deg);
+        transform: translate(-25%)rotate(-45deg);
+    }
+
+.left-box{
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    .left-box div{
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid #FFFFFF;
+        border-bottom: 2px solid #FFFFFF;
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    }

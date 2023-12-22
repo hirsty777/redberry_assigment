@@ -1,12 +1,24 @@
-.menu-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.wrapper{
+    position: relative;
     width: min-content;
     height: 32px;
     padding: 8px 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 30px;
     white-space: nowrap;
+}
+.menu-background{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    padding: 8px 16px;
+    border-radius: 30px;
     cursor: pointer;
+    opacity: 0.2;
 }

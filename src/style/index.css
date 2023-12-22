@@ -18,4 +18,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+/* some global style*/
+.link-arrow{
+  font-size: 16px;
+  font-weight: 900;
+}

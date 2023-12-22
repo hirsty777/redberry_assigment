@@ -1,9 +1,11 @@
 import { BlogsType } from "../interfaces/types"
 import CategoriesList from "./CategoriesList"
 import Style from "../style/components/BlogsList.module.css"
+import { useNavigate } from "react-router-dom"
 
 const BlogsList:React.FC<BlogsType> = ({id, author, categories, description, image, publish_date, title}) => {
 
+    const navigate = useNavigate()
 
     return(
         <div className={Style.wrapper}>
@@ -24,7 +26,7 @@ const BlogsList:React.FC<BlogsType> = ({id, author, categories, description, ima
                 ))}
             </div>
             <p className={Style.description}>{description} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos consequuntur ex fugit, quibusdam nisi provident ipsa ut vitae rerum numquam ipsam sunt, debitis odit error delectus. Voluptatem voluptas delectus repudiandae.</p>
-            <p className={Style.link}>სრულად ნახვა</p>
+            <p className={Style.link} onClick={()=> navigate(`/blog/${id}`)}>სრულად ნახვა <span className="link-arrow">&#8599;</span></p>
         </div>
     )
 }
