@@ -35,7 +35,7 @@
     justify-content: center;
     align-items: center;
 }
-.modal-content{
+.modal-content-login, .modal-content-confirm{
     position: relative;
     width: 480px;
     min-height: 272px;
@@ -63,6 +63,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.modal-content-login h1,
+.modal-content-confirm h1{
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1A1F;
 }
 
 .input-box{
@@ -106,4 +112,15 @@
     flex-direction: row;
     column-gap: 8px;
     color: #EA1919;
+}
+
+/*confirm modal*/
+.modal-content-confirm{
+   justify-content: space-between;
+}
+.confrim-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 16px;
 }

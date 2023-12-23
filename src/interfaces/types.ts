@@ -40,5 +40,7 @@ export type AllBlogsType = {
 
 export type DataContextType = {
     allBlogs:AllBlogsType | null,
-    allCategories:allCategoriesType | null
+    allCategories:allCategoriesType | null,
+    loginStatus:boolean,
+    login:any
 }
