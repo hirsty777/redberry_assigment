@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react"
-import { fethBlogs, fethCategories } from "../api/getData"
+import { fethBlogs, fethCategories } from "../hooks/api/getData"
 import { AllBlogsType, DataContextType, allCategoriesType } from "../interfaces/types"
 
 type DataContextProviiderProps = {

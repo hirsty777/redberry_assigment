@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { DataContext } from "../context/DataContext"
+import { DataContext } from "../../context/DataContext"
 
 const loginUrl = `https://api.blog.redberryinternship.ge/api/login`
 const token = 'e0745b43af1331df063d656ab0179483c09f606d894873c76c5f2f2f85bc58bb'

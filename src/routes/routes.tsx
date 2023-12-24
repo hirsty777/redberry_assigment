@@ -14,8 +14,7 @@ const router:RouteObject[] = [
     },
     {
         element:<AddBlog />,
-        path:"addBlog",
-        
+        path:"addBlog"
     }
 ]
 
