@@ -1,5 +1,5 @@
 /* global/repetitive styles for this addBlog page*/
-.input-style, .custom-dropdown-box{
+.input-style{
     width: 100%;
     padding: 12px;
     background-color: #FCFCFD;
@@ -27,7 +27,7 @@
 .wrapper{
     width: 100%;
     min-height: 100vh;
-    padding-bottom: 110px;
+    padding-bottom: 65px;
    
     display: flex;
     flex-direction: column;
@@ -167,6 +167,70 @@ form label{
     flex-direction: row;
     justify-content: space-between;
 }
+
+/* custom dropdown*/
+.custom-dropdown-box{
+    position: relative;
+    width: 100%;
+    height: 44px;
+    padding: 12px;
+    background-color: #FCFCFD;
+    border: 1.5px solid #E4E3EB;
+    border-radius: 12px;
+    outline: none;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.custom-dropdown-input{
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 500;
+    color: #85858D;
+}
+.custom-dropdown-arrow{
+    position: absolute;
+    right: 0;
+    top:0;
+    width: 40px;
+    height: 40px;
+    border-radius: 0 10px 10px 0;
+    background-color: #FCFCFD;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.custom-dropdown-list{
+    position: absolute;
+    width: 100%;
+    min-height: 50px;
+    max-height: 200px;
+    padding: 16px;
+    left: 0;
+    bottom: -2px;
+    transform: translateY(100%);
+    overflow-y: scroll;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #E4E3EB;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+}
 /* email */
 .email-box{
     width: 288px;
@@ -178,7 +242,7 @@ form label{
 }
 
 /* submit btn */
-.submit-blog{
+.submit-blog-btn{
     width: 288px;
     padding: 10px 20px;
     border-radius: 8px;

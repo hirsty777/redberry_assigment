@@ -7,18 +7,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    column-gap: 8px;
     border-radius: 30px;
     white-space: nowrap;
 }
-.menu-background{
-    position: absolute;
-    top: 0;
-    left: 0;
 
-    width: 100%;
-    height: 100%;
-    padding: 8px 16px;
-    border-radius: 30px;
+.wrapper p{
     cursor: pointer;
-    opacity: 0.2;
+}
+
+.remove-btn{
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
 }

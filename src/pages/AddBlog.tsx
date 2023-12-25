@@ -5,13 +5,16 @@ import Style from '../style/pages/AddBlog.module.css'
 import Logo from "../assets/logo.png"
 import Gallery from "../assets/gallery.svg"
 import DropZone from "../components/DropZone";
-
+import CategoriesList from "../components/CategoriesList";
+import DownArrow from "../assets/downArrow.svg"
  
  
 const AddBlog = () => {
     const data = useContext(DataContext)
     const navigate = useNavigate()
     const [imageInput, setImageInput] = useState<any>()
+    const [choosCat, setChoosCat] = useState<any[]>([])
+    const [isVisible, setIsVisible] = useState<boolean>(false)
     
     // useEffect(() => {
     //     if(!data?.loginStatus){
@@ -23,6 +26,20 @@ const AddBlog = () => {
     const removeImage = () => {
         setImageInput(null)
     }
+    const selecteElement = (obj:{title:string,background_color:string}) => {
+        if(choosCat.some(el => el.title === obj.title))return    //if categorie is olready choosen prveent from adding
+
+        if(data?.allCategories?.data !== undefined){
+        setChoosCat(prev => [...prev, data?.allCategories?.data.find((cat)=> cat.title === obj.title)])
+        }
+    }
+
+    const removeCategorie = (value:string) => {
+        if(choosCat.length > 0){
+            setChoosCat(prev => prev.filter((category) => category.title !== value))
+        }
+    }
+    console.log(choosCat)
     
     return(
         <div className={Style.wrapper}>
@@ -77,7 +94,32 @@ const AddBlog = () => {
                         <div className={Style["input-box"]}>
                             <label htmlFor="categories">კატეგორია *</label>
                             <div className={Style["custom-dropdown-box"]}>
-                                some text
+                                <div className={Style["custom-dropdown-input"]} style={{fontSize:12}}>
+                                    {choosCat.length > 0 ? 
+                                        choosCat.map((el) =>(
+                                        <CategoriesList key={el.id} 
+                                                title={el.title}
+                                                background_color={el.background_color}
+                                                text_color={el.text_color}
+                                                selecteElement={removeCategorie}
+                                                addRemoveBtn={true}/>
+                                        ))
+                                        :
+                                        "შეიყვნეთ სათაური" 
+                                    }
+                                    <div className={Style["custom-dropdown-arrow"]} onClick={()=>setIsVisible(prev=>!prev)}>
+                                        <img src={DownArrow} alt="down arrow" />
+                                    </div>
+                                </div>
+                                <div className={Style["custom-dropdown-list"]} style={{display:`${isVisible? "flex" : "none"}`}}>
+                                    {data?.allCategories?.data && data.allCategories.data.map((el)=>(
+                                                <CategoriesList key={el.id} 
+                                                title={el.title}
+                                                background_color={el.background_color}
+                                                text_color={el.text_color}
+                                                selecteElement={selecteElement}/>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -85,7 +127,7 @@ const AddBlog = () => {
                         <label htmlFor="email">ელ-ფოსტა</label>
                         <input type="text"  id="email" placeholder="Example@redberry.ge" className={Style["input-style"]}/>
                     </div>
-                    <button type="submit" className={Style["submit-blog"]}>გამოქვეყნება</button>
+                    <button type="submit" className={Style["submit-blog-btn"]}>გამოქვეყნება</button>
                 </form>
             </main>
         </div>

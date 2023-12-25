@@ -6,6 +6,7 @@ export type categoriesType = {
     text_color:string,
     background_color:string,
     selecteElement?:Function,
+    addRemoveBtn?:boolean,
     isActive?:boolean
 }
 export type allCategoriesType = {
