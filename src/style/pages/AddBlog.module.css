@@ -1,3 +1,29 @@
+/* global/repetitive styles for this addBlog page*/
+.input-style, .custom-dropdown-box{
+    width: 100%;
+    padding: 12px;
+    background-color: #FCFCFD;
+    border: 1.5px solid #E4E3EB;
+    border-radius: 12px;
+    outline: none;
+}
+    .input-style:focus{
+        border-color: #5D37F3;
+    }
+/*all spans in this page used for requirements filed*/
+.requirements span{
+    font-size: 12px;
+    font-weight: 400;
+    color: #85858D;
+}
+.input-box{
+    width: 288px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+/* */
 .wrapper{
     width: 100%;
     min-height: 100vh;
@@ -24,10 +50,19 @@
 .addblog-box{
     width: 600px;
     min-height: 928px;
-    background-color: aquamarine;
 }
 
-
+/* FORM*/
+form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+}
+form label{
+    font-size: 14px;
+    font-weight: 500;
+    color: #1A1A1F;
+}
 /* image upload field */
 .image-field{
     display: flex;
@@ -69,7 +104,7 @@
     column-gap: 12px;
     align-items: center;
     border-radius: 12px;
-    background-color: #F2F2FA;
+    background-color: #E4E3EB
 }
 .file-name{
     font-size: 14px;
@@ -96,5 +131,64 @@
 .author-and-title{
     width: 100%;
     min-height: 140px;
-    background-color: #85858D;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.requirements{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* description area */
+.description-box{
+    width: 100%;
+    min-width: 180px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+.description-box textarea{
+    width: 100%;
+    height: 124px;
+    resize: none;
+}
+
+/* date and categories*/
+.date-and-categorie{
+    width: 100%;
+    min-height: 72px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+/* email */
+.email-box{
+    width: 288px;
+    min-height: 120px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+/* submit btn */
+.submit-blog{
+    width: 288px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background-color: #E4E3EB;
+    color: #FFFFFF;
+    align-self: flex-end;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 500;
 }

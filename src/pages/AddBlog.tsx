@@ -45,13 +45,47 @@ const AddBlog = () => {
                         </div>
                     }
                     <div className={Style["author-and-title"]}>
-                        <div className={Style["author-box"]}>
-                            
+                        <div className={Style["input-box"]}>
+                            <label htmlFor="author">ავტორი *</label>
+                            <input type="text"  id="author" placeholder="შეიყვნეთ ავტორი" className={Style["input-style"]}/>
+                            <div className={Style.requirements}>
+                                <span>&bull; მინიმუმ 4 სიმბოლო</span>
+                                <span>&bull; მინიმუმ ორი სიტყვა</span>
+                                <span>&bull; მხოლოდ ქართული სიმბოლოები</span>
+                            </div>
                         </div>
-                        <div className={Style["title-box"]}>
-
+                        <div className={Style["input-box"]}>
+                            <label htmlFor="title">სათაური *</label>
+                            <input type="text"  id="title" placeholder="შეიყვნეთ სათაური" className={Style["input-style"]}/>
+                            <div className={Style.requirements}>
+                                <span>&bull; მინიმუმ 4 სიმბოლო</span>
+                            </div>
                         </div>
                     </div>
+                    <div className={Style["description-box"]}>
+                        <label htmlFor="description">აღწერა *</label>
+                        <textarea name="description" id="description" placeholder="შეიყვნეთ აღწერა" className={Style["input-style"]}></textarea>
+                        <div className={Style.requirements}>
+                            <span>მინიმუმ 4 სიმბოლო</span>
+                        </div>
+                    </div>
+                    <div className={Style["date-and-categorie"]}>
+                        <div className={Style["input-box"]}>
+                            <label htmlFor="date">გამოქვეყნების თარიღი *</label>
+                            <input type="date"  id="date" className={Style["input-style"]}/>
+                        </div>
+                        <div className={Style["input-box"]}>
+                            <label htmlFor="categories">კატეგორია *</label>
+                            <div className={Style["custom-dropdown-box"]}>
+                                some text
+                            </div>
+                        </div>
+                    </div>
+                    <div className={Style["email-box"]}>
+                        <label htmlFor="email">ელ-ფოსტა</label>
+                        <input type="text"  id="email" placeholder="Example@redberry.ge" className={Style["input-style"]}/>
+                    </div>
+                    <button type="submit" className={Style["submit-blog"]}>გამოქვეყნება</button>
                 </form>
             </main>
         </div>
