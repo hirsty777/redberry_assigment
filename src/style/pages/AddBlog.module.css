@@ -36,17 +36,6 @@
     background-color: var(--main-bc-color1);
 }
 
-.addblog-header{
-    width: 100%;
-    height: 80px;
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #E4E3EB;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .addblog-box{
     width: 600px;
     min-height: 928px;

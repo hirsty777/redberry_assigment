@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 
 const postUrl = `https://api.blog.redberryinternship.ge/api/blogs`
-const token = 'e0745b43af1331df063d656ab0179483c09f606d894873c76c5f2f2f85bc58bb'
+const token = '99fab97bb692e3bc5aea12860a1614727c5771d588b8eb0e2d9cd413222653c8'
 
 
-const usePostBlog = () => {
+const usePostBlog = (setWasposted:any) => {
     const [form, setForm] = useState<any | null>(null)
 
     useEffect(() =>{
@@ -18,10 +18,14 @@ const usePostBlog = () => {
                 },
                 body:form
             })
-            console.log(response)
+            if(response.ok && response.status === 204){
+                setWasposted(true) 
+            }else{
+                setWasposted(false)
+            }
         })()
     }
-    },[form])
+    },[form, setWasposted])
 
     return setForm
 }

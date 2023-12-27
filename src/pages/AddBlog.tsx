@@ -2,18 +2,19 @@ import {  useContext, useEffect,  useRef,  useState } from "react"
 import { DataContext } from "../context/DataContext"
 import { useNavigate   } from "react-router-dom";
 import Style from '../style/pages/AddBlog.module.css'
-import Logo from "../assets/logo.png"
 import DropZone from "../layouts/DropZone";
 import CategoriesList from "../components/CategoriesList";
 import DownArrow from "../assets/downArrow.svg"
 import AlertIcon from "../assets/info-circle.svg"
 import usePostBlog from "../hooks/api/usePostBlog";
+import AddBlogModal from "../layouts/AddBlogModal";
  
  
 const AddBlog = () => {
     const data = useContext(DataContext)
-    const setForm = usePostBlog()
     const navigate = useNavigate()
+    const [wasPosted, setWasposted] = useState<boolean>(false)
+    const setForm = usePostBlog(setWasposted)
     const [imageInput, setImageInput] = useState<any>()
     const [choosCat, setChoosCat] = useState<any[]>([])        //== choosen categories
     const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -172,9 +173,7 @@ const AddBlog = () => {
 
     return(
         <div className={Style.wrapper}>
-            <div className={Style["addblog-header"]}>
-                <img src={Logo} alt="logo" width={150} height={24}/>
-            </div>
+            <AddBlogModal postStatus={wasPosted}/>  {/* <--- also contains header*/}
             <main className={Style["addblog-box"]}>
                 <h1>ბლოგის დამატება</h1>
                 <form onSubmit={handleSubmit}>

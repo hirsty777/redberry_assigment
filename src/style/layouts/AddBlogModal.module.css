@@ -1,0 +1,77 @@
+.addblog-header{
+    width: 100%;
+    height: 80px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E4E3EB;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #00000069;
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content-confirm{
+    position: relative;
+    width: 480px;
+    min-height: 272px;
+    padding: 40px 0;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    justify-content: center;
+    row-gap: 40px;
+}
+
+.close{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 20px;
+    right: 20px;
+    font-weight: 900;
+    color: #1A1A1F;
+    cursor: pointer;
+    z-index: 20;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content-login h1,
+.modal-content-confirm h1{
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1A1F;
+}
+.confrim-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 16px;
+}
+.enter-btn{
+    width: 432px;
+    height: 40px;
+    background-color: #5D37F3;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
