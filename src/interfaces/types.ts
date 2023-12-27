@@ -1,13 +1,13 @@
-import { CSSProperties } from "react"
-
 export type categoriesType = {
     id?:number,
     title:string,
-    text_color:string,
+    text_color?:string,
     background_color:string,
     selecteElement?:Function,
     addRemoveBtn?:boolean,
-    isActive?:boolean
+    isActive?:boolean,
+    isCatSelecTed?:boolean,
+    choosenCategories?:any
 }
 export type allCategoriesType = {
     data:categoriesType[]

@@ -3,7 +3,7 @@ import { categoriesType } from "../interfaces/types"
 import Style from '../style/components/CategoriesList.module.css'
 
 
-const CategoriesList:React.FC<categoriesType>= ({title, background_color, text_color, selecteElement, addRemoveBtn}) => {
+const CategoriesList:React.FC<categoriesType>= ({title, background_color, selecteElement, addRemoveBtn, isCatSelecTed, choosenCategories}) => {
     const [active, setActive] = useState<boolean>(false)
 
     //conver hex to rgba 
@@ -20,15 +20,22 @@ const CategoriesList:React.FC<categoriesType>= ({title, background_color, text_c
 
     //addRemoveBtn i use it to check where this components is used if addRemoveBtn is true it means i use it on dropdown choosen elemnets
     //this needed bcs only in  dropdown choosen elemnets i need difrent styles
-    const stylesObj = {
+    const stylesObj = choosenCategories ?
+    {   color:"#FFFFFF" ,
+        backgroundColor:background_color ,
+        border:"1px solid transparent"
+    }
+    :
+    {
         color:addRemoveBtn? "#FFFFFF" : background_color,
         backgroundColor:addRemoveBtn? background_color : `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`,
-        border:active? "1px solid #000000" : "1px solid transparent"
+        border:isCatSelecTed? "1px solid transparent": 
+                       active? "1px solid #000000" : "1px solid transparent"
     }
 
     const onClickEvent = () =>{
         if(selecteElement){
-            selecteElement({title,background_color})
+            selecteElement(title)
         }
         setActive((prev) => !prev)
     }

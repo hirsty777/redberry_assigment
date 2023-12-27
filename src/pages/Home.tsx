@@ -26,6 +26,7 @@ const Home = () => {
             setSelected((prev)=>[...prev, value]) 
         }
     }
+    console.log(selected)
 
     return(
         <div>
@@ -41,7 +42,6 @@ const Home = () => {
                             <CategoriesList key={el.id} 
                                             title={el.title}
                                             background_color={el.background_color}
-                                            text_color={el.text_color}
                                             selecteElement={selecteElement}
                                             isActive = {selected.find((val) => val === el.title) ? true : false}/>
                         ))}

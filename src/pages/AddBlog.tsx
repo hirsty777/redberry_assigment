@@ -1,12 +1,13 @@
 import {  useContext, useEffect,  useRef,  useState } from "react"
 import { DataContext } from "../context/DataContext"
-import { useNavigate   } from "react-router-dom";
+import { Form, useNavigate   } from "react-router-dom";
 import Style from '../style/pages/AddBlog.module.css'
 import Logo from "../assets/logo.png"
 import DropZone from "../layouts/DropZone";
 import CategoriesList from "../components/CategoriesList";
 import DownArrow from "../assets/downArrow.svg"
 import AlertIcon from "../assets/info-circle.svg"
+import { json } from "stream/consumers";
  
  
 const AddBlog = () => {
@@ -52,12 +53,12 @@ const AddBlog = () => {
         setVerifyAllInputs(prev => [false, ...prev.slice(1)])
     }
 
-    const selecteElement = (obj:{title:string,background_color:string}) => {
-        if(choosCat.some(el => el.title === obj.title)){
-            setChoosCat((prev) => [...prev.filter((cat) => cat.title !== obj.title)])
+    const selecteElement = (title:string) => {
+        if(choosCat.some(el => el.title === title)){
+            setChoosCat((prev) => [...prev.filter((cat) => cat.title !== title)])
         }
         else if(data?.allCategories?.data !== undefined){
-            setChoosCat(prev => [...prev, data?.allCategories?.data.find((cat)=> cat.title === obj.title)])
+            setChoosCat(prev => [...prev, data?.allCategories?.data.find((cat)=> cat.title === title)])
         }
     }
 
@@ -135,9 +136,7 @@ const AddBlog = () => {
             setVerifyAllInputs(prev => [...prev.slice(0, 4), false, ...prev.slice(5)])
         }
     }
-    if(choosCat.length > 0){
-        
-    }
+   
     const emailVerify = (e:HTMLInputElement) => {
         if(e.value.trim().length > 0){          // <-- if somthing entered verify 
             if(e.value.endsWith("@redberry.ge") && e.value.length > 12 && emailAlertRef.current){
@@ -156,10 +155,17 @@ const AddBlog = () => {
         }
     }
 
+    
     const handleSubmit = (e:any) => {
         e.preventDefault()
+        if(verifyAllInputs.every(val => val === true)){
+            const catArray = choosCat.map((cat) => cat.id)
+
+            const formData =  new FormData(e.target)
+            formData.append("image", imageInput)
+            formData.append("categories", JSON.stringify(catArray))
+        }
     }
-    //console.log(verifyAllInputs)
 
     return(
         <div className={Style.wrapper}>
@@ -177,7 +183,7 @@ const AddBlog = () => {
                     <div className={Style["author-and-title"]}>
                         <div className={Style["input-box"]}>
                             <label htmlFor="author">ავტორი *</label>
-                            <input type="text" ref={authorInputRef}  id="author" placeholder="შეიყვნეთ ავტორი" className={Style["input-style"]} onChange={(e)=>authorVerify(e.target.value.trim())}/>
+                            <input type="text" name="author" ref={authorInputRef}  id="author" placeholder="შეიყვნეთ ავტორი" className={Style["input-style"]} onChange={(e)=>authorVerify(e.target.value.trim())}/>
                             <div className={Style.requirements}>
                                 <span ref={authorRef1}>&bull; მინიმუმ 4 სიმბოლო</span>
                                 <span ref={authorRef2}>&bull; მინიმუმ ორი სიტყვა</span>
@@ -186,7 +192,7 @@ const AddBlog = () => {
                         </div>
                         <div className={Style["input-box"]}>
                             <label htmlFor="title">სათაური *</label>
-                            <input type="text" ref={titleInputRef}  id="title" placeholder="შეიყვნეთ სათაური" className={Style["input-style"]} onChange={(e)=>titleVerify(e.target.value.trim())}/>
+                            <input type="text" name="title" ref={titleInputRef}  id="title" placeholder="შეიყვნეთ სათაური" className={Style["input-style"]} onChange={(e)=>titleVerify(e.target.value.trim())}/>
                             <div className={Style.requirements}>
                                 <span ref={titlerRef}>&bull; მინიმუმ 4 სიმბოლო</span>
                             </div>
@@ -203,7 +209,7 @@ const AddBlog = () => {
                     <div className={Style["date-and-categorie"]}>
                         <div className={Style["input-box"]}>
                             <label htmlFor="date">გამოქვეყნების თარიღი *</label>
-                            <input type="date"  id="date" className={Style["input-style"]} onChange={(e) => verifyDate(e.target)}/>
+                            <input type="date" name="publish_date"  id="date" className={Style["input-style"]} onChange={(e) => verifyDate(e.target)}/>
                         </div>
                         <div className={Style["input-box"]}>
                             <label>კატეგორია *</label>
@@ -214,8 +220,8 @@ const AddBlog = () => {
                                         <CategoriesList key={el.id} 
                                             title={el.title}
                                             background_color={el.background_color}
-                                            text_color={el.text_color}
                                             selecteElement={removeCategorie}
+                                            isCatSelecTed={true}
                                             addRemoveBtn={true}/>
                                         )):"შეიყვნეთ სათაური" 
                                     }
@@ -229,21 +235,26 @@ const AddBlog = () => {
                                             <CategoriesList key={el.id} 
                                             title={el.title}
                                             background_color={el.background_color}
-                                            text_color={el.text_color}
-                                            selecteElement={selecteElement}/> ))}
+                                            selecteElement={selecteElement}
+                                            isCatSelecTed={true}
+                                            choosenCategories={choosCat.some(cat => cat.title === el.title)}/> ))}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={Style["email-box"]}>
                         <label htmlFor="email">ელ-ფოსტა</label>
-                        <input type="text"  id="email" placeholder="Example@redberry.ge" className={Style["input-style"]} onChange={(e)=>emailVerify(e.target)}/>
+                        <input type="text" name="email"  id="email" placeholder="Example@redberry.ge" className={Style["input-style"]} onChange={(e)=>emailVerify(e.target)}/>
                         <span className={Style["alert-text"]} ref={emailAlertRef}>
                                 <img src={AlertIcon} alt="alert" width={20} height={20}/>
                                 მეილი უნდა მთავრდებოდეს @redberry.ge-ით
                             </span>
                     </div>
-                    <button type="submit" className={Style["submit-blog-btn"]}>გამოქვეყნება</button>
+                    <button type="submit"
+                            disabled={!verifyAllInputs.every(val => val === true)} 
+                            className={Style["submit-blog-btn"]}
+                            style={{backgroundColor:`${ verifyAllInputs.every(val => val === true)? "#5D37F3":"#E4E3EB" }`}}>
+                    გამოქვეყნება</button>
                 </form>
             </main>
         </div>

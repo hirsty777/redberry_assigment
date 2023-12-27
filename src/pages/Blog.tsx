@@ -76,7 +76,7 @@ const Blog = () => {
                         <CategoriesList key={el.id} 
                         title={el.title}
                         background_color={el.background_color}
-                        text_color={el.text_color}/>
+                        />
                     ))}
                 </div>
                 <p className={Style.description}>{response.description} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo pariatur deserunt quia nisi velit quos eligendi, quis repudiandae eos eum odit aspernatur vel. Tempore quidem corporis deleniti reiciendis, debitis magnam!

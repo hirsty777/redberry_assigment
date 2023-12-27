@@ -24,7 +24,7 @@ const DropZone:React.FC<DropZoneI> = ({addImageToState, isUploaded, name, remove
         <>
         {!isUploaded? 
            <div {...getRootProps()} className={Style["custom-upload"]}>
-                <input {...getInputProps()} />
+                <input {...getInputProps()}/>
                 <img src={AddIcon} alt="add icon" width={40} height={40}/>
                 <p>ჩააგდეთ ფაილი აქ ან <span>აირჩიეთ ფაილი</span></p>
             </div> 
