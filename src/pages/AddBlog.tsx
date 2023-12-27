@@ -1,17 +1,18 @@
 import {  useContext, useEffect,  useRef,  useState } from "react"
 import { DataContext } from "../context/DataContext"
-import { Form, useNavigate   } from "react-router-dom";
+import { useNavigate   } from "react-router-dom";
 import Style from '../style/pages/AddBlog.module.css'
 import Logo from "../assets/logo.png"
 import DropZone from "../layouts/DropZone";
 import CategoriesList from "../components/CategoriesList";
 import DownArrow from "../assets/downArrow.svg"
 import AlertIcon from "../assets/info-circle.svg"
-import { json } from "stream/consumers";
+import usePostBlog from "../hooks/api/usePostBlog";
  
  
 const AddBlog = () => {
     const data = useContext(DataContext)
+    const setForm = usePostBlog()
     const navigate = useNavigate()
     const [imageInput, setImageInput] = useState<any>()
     const [choosCat, setChoosCat] = useState<any[]>([])        //== choosen categories
@@ -162,8 +163,10 @@ const AddBlog = () => {
             const catArray = choosCat.map((cat) => cat.id)
 
             const formData =  new FormData(e.target)
-            formData.append("image", imageInput)
             formData.append("categories", JSON.stringify(catArray))
+            formData.append("image", imageInput, imageInput.type)
+
+            setForm(formData) // <-- change state in usepostblog 
         }
     }
 
@@ -262,3 +265,4 @@ const AddBlog = () => {
 }
 
 export default AddBlog
+
