@@ -10,12 +10,19 @@ import BlogsList from "../components/BlogsList"
 const Home = () => {
     const data = useContext(DataContext)
     const [selected, setSelected] = useState<string[]>([])
+    const currentDate = new Date()
   
     // if we have values in selected we filter data based on it or we just pass all blog from data
     const filteredBlogs = selected.length > 0 ? 
-        data?.allBlogs?.data.filter((blog) => blog.categories.some((category) => selected.includes(category.title)))
+        data?.allBlogs?.data.filter((blog) => {
+            const blogDate = new Date(blog.publish_date)
+            return blogDate <= currentDate && blog.categories.some((category) => selected.includes(category.title))
+        })
         :
-        data?.allBlogs?.data
+        data?.allBlogs?.data.filter((blog) => {
+            const blogDate = new Date(blog.publish_date)
+            return blogDate <= currentDate
+        })
 
     // we save value passed from categorieslist components to selelcted (if its olready there we romove it)
     const selecteElement = (value:string)=>{
