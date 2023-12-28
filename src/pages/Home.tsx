@@ -50,7 +50,7 @@ const Home = () => {
                                             title={el.title}
                                             background_color={el.background_color}
                                             selecteElement={selecteElement}
-                                            isActive = {selected.find((val) => val === el.title) ? true : false}/>
+                                            isClickable = { true }/>
                         ))}
                     </menu>
                 </div>  

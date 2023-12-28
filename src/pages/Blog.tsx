@@ -76,6 +76,7 @@ const Blog = () => {
                         <CategoriesList key={el.id} 
                         title={el.title}
                         background_color={el.background_color}
+                        isClickable={ false }
                         />
                     ))}
                 </div>

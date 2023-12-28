@@ -31,7 +31,11 @@ const AddBlogModal:React.FC<AddBlogModalI>= ({postStatus}) => {
                             <h1>ჩანაწი წარმატებით დაემატა</h1>
                         </div>
                         
-                        <button className={Style["enter-btn"]} onClick={() => navigate("/")}>მთავარ გვერდზე დაბრუნება</button>
+                        <button className={Style["enter-btn"]} onClick={() => {
+                            navigate("/")
+                            window.location.reload()} }>
+                            მთავარ გვერდზე დაბრუნება
+                        </button>
                     </div>
                 </div>
         </div>

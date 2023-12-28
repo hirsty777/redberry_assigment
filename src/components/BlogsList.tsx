@@ -22,7 +22,8 @@ const BlogsList:React.FC<BlogsType> = ({id, author, categories, description, ima
                     <CategoriesList key={el.id} 
                     title={el.title}
                     background_color={el.background_color}
-                    text_color={el.text_color}/>
+                    text_color={el.text_color}
+                    isClickable={false}/>
                 ))}
             </div>
             <p className={Style.description}>{description} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos consequuntur ex fugit, quibusdam nisi provident ipsa ut vitae rerum numquam ipsam sunt, debitis odit error delectus. Voluptatem voluptas delectus repudiandae.</p>

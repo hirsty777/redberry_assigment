@@ -5,7 +5,7 @@ export type categoriesType = {
     background_color:string,
     selecteElement?:Function,
     addRemoveBtn?:boolean,
-    isActive?:boolean,
+    isClickable?:boolean,
     isCatSelecTed?:boolean,
     choosenCategories?:any
 }

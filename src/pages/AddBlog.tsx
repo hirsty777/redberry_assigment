@@ -239,6 +239,7 @@ const AddBlog = () => {
                                             background_color={el.background_color}
                                             selecteElement={selecteElement}
                                             isCatSelecTed={true}
+                                            isClickable= { true }
                                             choosenCategories={choosCat.some(cat => cat.title === el.title)}/> ))}
                                 </div>
                             </div>
