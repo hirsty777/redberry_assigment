@@ -27,15 +27,41 @@ const AddBlog = () => {
     const titlerRef = useRef<HTMLSpanElement>(null)
     const descInputRef = useRef<HTMLTextAreaElement>(null)     //== description
     const descRef = useRef<HTMLSpanElement>(null)
+    const dateInputRef = useRef<HTMLInputElement>(null)        //== date
     const custDropInputRef = useRef<HTMLDivElement>(null)      //== custom dropdown input 
-    const emailAlertRef = useRef<HTMLSpanElement>(null)        //== emai
+    const emailInputRef = useRef<HTMLInputElement>(null)        //== emai
+    const emailAlertRef = useRef<HTMLSpanElement>(null)        
     const initRef = useRef<boolean>(true)
-
-    useEffect(() => {
+    console.log("rendr time")
+    useEffect(() => {   
         if(!data?.loginStatus){
             navigate("/")
         }
+        // fill input values if they are stored in localstorage
+        const auhtorValue = localStorage.getItem("author")? localStorage.getItem("author") as string : ""                               //<==================
+        if(authorInputRef.current) {authorInputRef.current.value = auhtorValue}
+            if(auhtorValue.length > 0)authorVerify(auhtorValue)
 
+        const titleValue = localStorage.getItem("title")? localStorage.getItem("title") as string : ""                                  //<==================
+        if(titleInputRef.current) {titleInputRef.current.value = titleValue}
+            if(titleValue)titleVerify(titleValue)
+
+        const descriptionValue = localStorage.getItem("description")? localStorage.getItem("description") as string : ""                //<==================
+        if(descInputRef.current) {descInputRef.current.value = descriptionValue}
+            if(descriptionValue)descriptionVerify(descriptionValue)
+
+        const dateValue = localStorage.getItem("date")? localStorage.getItem("date") as string : ""                                     //<==================
+        if(dateInputRef.current) {dateInputRef.current.value = dateValue}
+            if(dateValue)verifyDate(dateValue)
+
+        const choosCatValue = localStorage.getItem("categories")? [...JSON.parse(localStorage.getItem("categories") as string)] : []    //<==================
+        if(choosCat.length === 0) setChoosCat(choosCatValue)
+        
+        const emailValue = localStorage.getItem("email")? localStorage.getItem("email") as string : ""                                  //<==================
+        if(emailInputRef.current) {emailInputRef.current.value = emailValue}
+            if(emailValue)verifyEmail(emailValue)
+
+        //for custom dropdown
         if(choosCat.length>0){
             setVerifyAllInputs(prev => [...prev.slice(0, 5), true, ...prev.slice(6)])
             if(custDropInputRef.current) custDropInputRef.current.style.borderColor = "#14D81C"
@@ -57,21 +83,30 @@ const AddBlog = () => {
 
     const selecteElement = (title:string) => {
         if(choosCat.some(el => el.title === title)){
-            setChoosCat((prev) => [...prev.filter((cat) => cat.title !== title)])
+            setChoosCat((prev) => {
+               localStorage.setItem("categories",JSON.stringify([...prev.filter((cat) => cat.title !== title)]))
+               return [...prev.filter((cat) => cat.title !== title)]
+            })
         }
         else if(data?.allCategories?.data !== undefined){
-            setChoosCat(prev => [...prev, data?.allCategories?.data.find((cat)=> cat.title === title)])
+            setChoosCat(prev => {
+                localStorage.setItem("categories",JSON.stringify([...prev, data?.allCategories?.data.find((cat)=> cat.title === title)]))
+                return [...prev, data?.allCategories?.data.find((cat)=> cat.title === title)]})
         }
     }
 
     const removeCategorie = (value:string) => {
         if(choosCat.length > 0){
-            setChoosCat(prev => prev.filter((category) => category.title !== value))
+            setChoosCat(prev => {
+                localStorage.setItem("categories", JSON.stringify(prev.filter((category) => category.title !== value) ))
+                return prev.filter((category) => category.title !== value)
+            })
         }
     }
 
     // verifying
     const authorVerify = (e:string) => {
+        localStorage.setItem("author", e);
         const verifysObj = [false, false, false]
         //min 4 symbols
         if(e.length >= 4 && authorRef1.current){
@@ -108,6 +143,7 @@ const AddBlog = () => {
         }
     }
     const titleVerify = (e:string) => {
+        localStorage.setItem("title", e);
         if(e.length >= 4 && titlerRef.current && titleInputRef.current){
             titlerRef.current.style.color="#14D81C"
             titleInputRef.current.style.borderColor = "#14D81C"
@@ -119,6 +155,7 @@ const AddBlog = () => {
         }
     }
     const descriptionVerify = (e:string) => {
+        localStorage.setItem("description", e);
         if(e.length >= 4 && descRef.current && descInputRef.current){
             descRef.current.style.color="#14D81C"
             descInputRef.current.style.borderColor = "#14D81C"
@@ -129,29 +166,31 @@ const AddBlog = () => {
             setVerifyAllInputs(prev => [...prev.slice(0, 3), false, ...prev.slice(4)])
         }
     }
-    const verifyDate = (e:HTMLInputElement ) => {
-        if(e.value.length > 0){
-            e.style.borderColor = "#14D81C"
+    const verifyDate = (e:string ) => {
+        localStorage.setItem("date", e);
+        if(e.length > 0 && dateInputRef.current){
+            dateInputRef.current.style.borderColor = "#14D81C"
             setVerifyAllInputs(prev => [...prev.slice(0, 4), true, ...prev.slice(5)])
-        }else{
-            e.style.borderColor = "#EA1919"
+        }else if(dateInputRef.current){
+            dateInputRef.current.style.borderColor = "#EA1919"
             setVerifyAllInputs(prev => [...prev.slice(0, 4), false, ...prev.slice(5)])
         }
     }
-   
-    const emailVerify = (e:HTMLInputElement) => {
-        if(e.value.trim().length > 0){          // <-- if somthing entered verify 
-            if(e.value.endsWith("@redberry.ge") && e.value.length > 12 && emailAlertRef.current){
-                e.style.borderColor = "#14D81C"
+    
+    const verifyEmail = (e:string) => {
+        localStorage.setItem("email", e);
+        if(e.trim().length > 0 && emailInputRef.current){          // <-- if somthing entered verify 
+            if(e.endsWith("@redberry.ge") && e.length > 12 && emailAlertRef.current){
+                emailInputRef.current.style.borderColor = "#14D81C"
                 emailAlertRef.current.style.display = "none"
                 setVerifyAllInputs(prev => [...prev.slice(0, 6), true])
             }else if(emailAlertRef.current){
-                e.style.borderColor = "#EA1919"
+                emailInputRef.current.style.borderColor = "#EA1919"
                 emailAlertRef.current.style.display = "flex"
                 setVerifyAllInputs(prev => [...prev.slice(0, 6), false])
             }
-        }else if(emailAlertRef.current){      // <--  if entered text removed  set to default
-            e.style.borderColor = "#E4E3EB"
+        }else if(emailAlertRef.current && emailInputRef.current){      // <--  if entered text removed  set to default
+            emailInputRef.current.style.borderColor = "#E4E3EB"
             emailAlertRef.current.style.display = "none"
             setVerifyAllInputs(prev => [...prev.slice(0, 6), true])
         }
@@ -211,7 +250,7 @@ const AddBlog = () => {
                     <div className={Style["date-and-categorie"]}>
                         <div className={Style["input-box"]}>
                             <label htmlFor="date">გამოქვეყნების თარიღი *</label>
-                            <input type="date" name="publish_date"  id="date" className={Style["input-style"]} onChange={(e) => verifyDate(e.target)}/>
+                            <input type="date" ref={dateInputRef} name="publish_date"  id="date" className={Style["input-style"]} onChange={(e) => verifyDate(e.target.value)}/>
                         </div>
                         <div className={Style["input-box"]}>
                             <label>კატეგორია *</label>
@@ -247,7 +286,7 @@ const AddBlog = () => {
                     </div>
                     <div className={Style["email-box"]}>
                         <label htmlFor="email">ელ-ფოსტა</label>
-                        <input type="text" name="email"  id="email" placeholder="Example@redberry.ge" className={Style["input-style"]} onChange={(e)=>emailVerify(e.target)}/>
+                        <input type="text" ref={emailInputRef} name="email"  id="email" placeholder="Example@redberry.ge" className={Style["input-style"]} onChange={(e)=>verifyEmail(e.target.value)}/>
                         <span className={Style["alert-text"]} ref={emailAlertRef}>
                                 <img src={AlertIcon} alt="alert" width={20} height={20}/>
                                 მეილი უნდა მთავრდებოდეს @redberry.ge-ით

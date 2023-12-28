@@ -11,7 +11,7 @@ const DataContext = createContext<DataContextType | null>(null)
 const DataProvider = ({children}:DataContextProviiderProps) => {
     const [allBlogs, setAllBlogs] = useState<AllBlogsType | null>(null)
     const [allCategories, setAllCategories] = useState<allCategoriesType | null>(null)
-    const [loginStatus, setLoginStatus] = useState<boolean>(false) 
+    const [loginStatus, setLoginStatus] = useState<boolean>(true) 
 
     useEffect(()=>{ 
         fethBlogs()

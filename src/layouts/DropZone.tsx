@@ -1,4 +1,4 @@
-import { useCallback } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import Style  from "../style/components/DropZone.module.css"
 import AddIcon from "../assets/add.svg"
@@ -13,13 +13,13 @@ interface DropZoneI {
 }
 
 const DropZone:React.FC<DropZoneI> = ({addImageToState, isUploaded, name, remove}) => {
-
+ 
     const onDrop = useCallback((acceptedFiles:any) => {
         if(addImageToState) addImageToState(acceptedFiles[0])
     }, [addImageToState])
 
     const {getRootProps, getInputProps} = useDropzone({onDrop})
-      
+    
     return(
         <>
         {!isUploaded? 

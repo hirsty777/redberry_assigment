@@ -33,7 +33,8 @@ const AddBlogModal:React.FC<AddBlogModalI>= ({postStatus}) => {
                         
                         <button className={Style["enter-btn"]} onClick={() => {
                             navigate("/")
-                            window.location.reload()} }>
+                            window.location.reload()
+                            localStorage.clear()}}>
                             მთავარ გვერდზე დაბრუნება
                         </button>
                     </div>
