@@ -25,6 +25,7 @@
 
 /* */
 .wrapper{
+    position: relative;
     width: 100%;
     min-height: 100vh;
     padding-bottom: 65px;
@@ -40,6 +41,29 @@
     width: 600px;
     min-height: 928px;
 }
+
+.left-box{
+    position: absolute;
+    top: 120px;
+    left: 76px;
+    top: 100px;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D9D8E0;
+}
+    .left-box div{
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid #1A1A1F;
+        border-bottom: 2px solid #1A1A1F;
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    }
 
 /* FORM*/
 form{

@@ -7,10 +7,11 @@ export type categoriesType = {
     addRemoveBtn?:boolean,
     isClickable?:boolean,
     isCatSelecTed?:boolean,
-    choosenCategories?:any
+    choosenCategories?:any,
+    isUsedIn?:string
 }
 export type allCategoriesType = {
-    data:categoriesType[]
+    data:categoriesType[] 
 }
 
 
@@ -40,7 +41,7 @@ export type AllBlogsType = {
 }
 
 export type DataContextType = {
-    allBlogs:AllBlogsType | null,
+    allBlogs:AllBlogsType |  null,
     allCategories:allCategoriesType | null,
     loginStatus:boolean,
     login:any

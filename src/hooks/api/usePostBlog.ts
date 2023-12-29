@@ -19,7 +19,8 @@ const usePostBlog = (setWasposted:any) => {
                 body:form
             })
             if(response.ok && response.status === 204){
-                setWasposted(true) 
+                setWasposted(true)
+
             }else{
                 setWasposted(false)
             }

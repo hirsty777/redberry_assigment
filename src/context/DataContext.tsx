@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react"
-import { fethBlogs, fethCategories } from "../hooks/api/getData"
+import { fethBlogs, fethCategories } from "../hooks/api/useGetData"
 import { AllBlogsType, DataContextType, allCategoriesType } from "../interfaces/types"
 
 type DataContextProviiderProps = {
@@ -11,7 +11,7 @@ const DataContext = createContext<DataContextType | null>(null)
 const DataProvider = ({children}:DataContextProviiderProps) => {
     const [allBlogs, setAllBlogs] = useState<AllBlogsType | null>(null)
     const [allCategories, setAllCategories] = useState<allCategoriesType | null>(null)
-    const [loginStatus, setLoginStatus] = useState<boolean>(true) 
+    const [loginStatus, setLoginStatus] = useState<boolean>(false) 
 
     useEffect(()=>{ 
         fethBlogs()

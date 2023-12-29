@@ -12,7 +12,7 @@ const Header = () => {
     const [isActive, setIsActive] = useState<boolean>(false)
     const [alert, setalerText] = useState<boolean>(false)
     const userInputRef = useRef<HTMLInputElement>(null)
-    const {setUserEmail} = useLoginUser()
+    const {setUserEmail} = useLoginUser(setalerText)
     const navigate = useNavigate()
 
 

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { BlogType, BlogsType } from "../interfaces/types"
 import Style from "../style/pages/Blog.module.css"
 import Header from "../layouts/Header"
@@ -12,6 +12,7 @@ import Loader from "../components/Loader"
 const Blog = () => {
     const data = useContext(DataContext)
     const {id} = useParams()
+    const navigate = useNavigate()
     const {response, loading, error} = useGetBlogById(id? Number(id) : null)
     const [similarData, setSimilarData] = useState<BlogsType[] | []>([])
     const [similaBlogNav, setSimilaBlogNav] = useState<{index:number, pos:number}>({index:0, pos:0})
@@ -59,6 +60,9 @@ const Blog = () => {
     return(
         <div className={Style.wrapper}>
             <Header />
+            <div className={Style["back-arrow-box"]} onClick={()=> navigate(-1)}>
+                    <div></div>
+            </div>
             <div className={Style.blog}>
                 <div className={Style["image-div"]}>
                     <img src={response.image} alt={response.title} />

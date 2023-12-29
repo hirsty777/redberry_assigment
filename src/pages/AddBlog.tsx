@@ -1,6 +1,6 @@
 import {  useContext, useEffect,  useRef,  useState } from "react"
 import { DataContext } from "../context/DataContext"
-import { useNavigate   } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Style from '../style/pages/AddBlog.module.css'
 import DropZone from "../layouts/DropZone";
 import CategoriesList from "../components/CategoriesList";
@@ -227,6 +227,9 @@ const AddBlog = () => {
         <div className={Style.wrapper}>
             <AddBlogModal postStatus={wasPosted}/>  {/* <--- also contains header*/}
             <main className={Style["addblog-box"]}>
+                <div className={Style["left-box"]} onClick={()=> {navigate(-1); localStorage.clear()}}>
+                    <div></div>
+                </div>
                 <h1>ბლოგის დამატება</h1>
                 <form onSubmit={handleSubmit}>
                     {!imageInput? 
@@ -276,7 +279,8 @@ const AddBlog = () => {
                                             background_color={el.background_color}
                                             selecteElement={removeCategorie}
                                             isCatSelecTed={true}
-                                            addRemoveBtn={true}/>
+                                            addRemoveBtn={true}
+                                            isUsedIn={"AddBlog"}/>
                                         )):"შეიყვნეთ სათაური" 
                                     }
                                     <div className={Style["custom-dropdown-arrow"]} onClick={()=>setIsVisible(prev=>!prev)}>
@@ -292,6 +296,7 @@ const AddBlog = () => {
                                             selecteElement={selecteElement}
                                             isCatSelecTed={true}
                                             isClickable= { true }
+                                            isUsedIn={"AddBlog"}
                                             choosenCategories={choosCat.some(cat => cat.title === el.title)}/> ))}
                                 </div>
                             </div>
