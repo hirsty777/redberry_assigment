@@ -15,7 +15,18 @@ interface DropZoneI {
 const DropZone:React.FC<DropZoneI> = ({addImageToState, isUploaded, name, remove}) => {
  
     const onDrop = useCallback((acceptedFiles:any) => {
-        if(addImageToState) addImageToState(acceptedFiles[0])
+        if(addImageToState) {
+            addImageToState(acceptedFiles[0])
+            //also store to local storage
+            const file = acceptedFiles[0];
+            const reader = new FileReader()
+            reader.onload = function(base64:any) {
+               localStorage.setItem("fileUrl", base64.currentTarget.result)
+               localStorage.setItem("fileName", acceptedFiles[0].name)
+               localStorage.setItem("fileType", acceptedFiles[0].type)
+            }
+            reader.readAsDataURL(file);
+        }
     }, [addImageToState])
 
     const {getRootProps, getInputProps} = useDropzone({onDrop})

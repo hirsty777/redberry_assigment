@@ -32,7 +32,7 @@ const AddBlog = () => {
     const emailInputRef = useRef<HTMLInputElement>(null)        //== emai
     const emailAlertRef = useRef<HTMLSpanElement>(null)        
     const initRef = useRef<boolean>(true)
-    console.log("rendr time")
+    
     useEffect(() => {   
         if(!data?.loginStatus){
             navigate("/")
@@ -60,6 +60,18 @@ const AddBlog = () => {
         const emailValue = localStorage.getItem("email")? localStorage.getItem("email") as string : ""                                  //<==================
         if(emailInputRef.current) {emailInputRef.current.value = emailValue}
             if(emailValue)verifyEmail(emailValue)
+
+        if(localStorage.getItem(("fileUrl"))){
+            const url = localStorage.getItem(("fileUrl")) as string;
+            const name = localStorage.getItem(("fileName")) as string;
+            const type = localStorage.getItem(("fileType")) as string;
+            fetch(url)
+            .then(res => res.blob())
+            .then(blob => {
+                const file = new File([blob], name,{ type })
+                addImageToState(file)
+            })
+        }
 
         //for custom dropdown
         if(choosCat.length>0){
@@ -205,10 +217,11 @@ const AddBlog = () => {
             const formData =  new FormData(e.target)
             formData.append("categories", JSON.stringify(catArray))
             formData.append("image", imageInput, imageInput.type)
-
+    
             setForm(formData) // <-- change state in usepostblog 
         }
     }
+ 
 
     return(
         <div className={Style.wrapper}>
