@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useDropzone } from "react-dropzone"
-import Style  from "../style/components/DropZone.module.css"
+import Style  from "../style/layouts/DropZone.module.css"
 import AddIcon from "../assets/add.svg"
 import Gallery from "../assets/gallery.svg"
 

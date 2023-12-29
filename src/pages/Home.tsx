@@ -33,8 +33,8 @@ const Home = () => {
             setSelected((prev)=>[...prev, value]) 
         }
     }
-    console.log(selected)
-
+    
+    if(!data?.allBlogs) return <div>reeerer</div>
     return(
         <div>
             <Header />

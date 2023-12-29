@@ -7,17 +7,18 @@ import useGetBlogById from "../hooks/api/useGetBlogById"
 import { useContext, useEffect, useRef, useState } from "react"
 import { DataContext } from "../context/DataContext"
 import BlogsList from "../components/BlogsList"
+import Loader from "../components/Loader"
 
 const Blog = () => {
     const data = useContext(DataContext)
     const {id} = useParams()
-    const response:BlogType = useGetBlogById(id? Number(id) : null)
+    const {response, loading, error} = useGetBlogById(id? Number(id) : null)
     const [similarData, setSimilarData] = useState<BlogsType[] | []>([])
     const [similaBlogNav, setSimilaBlogNav] = useState<{index:number, pos:number}>({index:0, pos:0})
     const leftArrowRef = useRef<HTMLDivElement | null>(null)
     const righttArrowRef = useRef<HTMLDivElement | null>(null)
 
-
+    
 
     useEffect(() => {
         if(data?.allBlogs && response){
@@ -53,8 +54,8 @@ const Blog = () => {
         }
     }
 
-    if(!response) return <div style={{color:"red"}}>no data &#11044;</div>
-
+    if(loading) return <div className={Style.wrapper}> <Loader /> </div>
+    if(error || !response) return <div style={{color:"red"}}>error &#11044;</div>
     return(
         <div className={Style.wrapper}>
             <Header />
@@ -80,9 +81,7 @@ const Blog = () => {
                         />
                     ))}
                 </div>
-                <p className={Style.description}>{response.description} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo pariatur deserunt quia nisi velit quos eligendi, quis repudiandae eos eum odit aspernatur vel. Tempore quidem corporis deleniti reiciendis, debitis magnam!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil ipsum ducimus ullam natus. Asperiores placeat qui expedita vero, pariatur architecto minima, illum consectetur ipsum quibusdam voluptatum? Quos praesentium modi aliquam.
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis voluptatem vel nisi dolor esse reprehenderit eum dicta sequi! Nulla hic culpa exercitationem sint enim officiis fugiat, corrupti repudiandae corporis soluta. lor lor</p>
+                <p className={Style.description}>{response.description}</p>
             </div>
             <div className={Style["similar-blogs-box"]}>
                 <div className={Style["similar-blogs-nav"]}>
