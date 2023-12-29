@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { BlogType, BlogsType } from "../interfaces/types"
+import { BlogsType } from "../interfaces/types"
 import Style from "../style/pages/Blog.module.css"
 import Header from "../layouts/Header"
 import CategoriesList from "../components/CategoriesList"

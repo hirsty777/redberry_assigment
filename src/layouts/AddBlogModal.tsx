@@ -22,7 +22,7 @@ const AddBlogModal:React.FC<AddBlogModalI>= ({postStatus}) => {
 
     return (
         <div className={Style["addblog-header"]}>
-                <img src={Logo} alt="logo" width={150} height={24}/>
+                <img src={Logo} alt="logo" width={150} height={24} onClick={()=>navigate("/")} style={{cursor:"pointer"}}/>
                 <div className={Style.modal} style={{visibility:`${isActive? "visible" : "hidden"}`}}>
                     <div className={Style["modal-content-confirm"]}> 
                         <div className={Style["close"]} onClick={()=> onModalClose()}>&#10005;</div>

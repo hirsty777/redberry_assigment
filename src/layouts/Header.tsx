@@ -42,7 +42,7 @@ const Header = () => {
 
     return (
         <header className={Style.wrapper}>
-            <img  src={Logo} alt='redberry logo' width={150} height={24}/>
+            <img  src={Logo} alt='redberry logo' width={150} height={24} onClick={()=>{navigate("/")}} style={{cursor:"pointer"}}/>
             <button className={Style.login} onClick={()=> onLoginButtonClick()}>
                 {data?.loginStatus? "დაამატე ბლოგი" : "შესვლა"}
             </button>
