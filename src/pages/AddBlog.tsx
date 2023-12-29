@@ -73,7 +73,7 @@ const AddBlog = () => {
             })
         }
 
-        //for custom dropdown
+        //for custom dropdown (work like verifying functions below but i use useeffect as eventlistener to changes for custom dropdown)
         if(choosCat.length>0){
             setVerifyAllInputs(prev => [...prev.slice(0, 5), true, ...prev.slice(6)])
             if(custDropInputRef.current) custDropInputRef.current.style.borderColor = "#14D81C"
@@ -208,7 +208,6 @@ const AddBlog = () => {
         }
     }
 
-    
     const handleSubmit = (e:any) => {
         e.preventDefault()
         if(verifyAllInputs.every(val => val === true)){
@@ -251,7 +250,7 @@ const AddBlog = () => {
                             <label htmlFor="title">სათაური *</label>
                             <input type="text" name="title" ref={titleInputRef}  id="title" placeholder="შეიყვნეთ სათაური" className={Style["input-style"]} onChange={(e)=>titleVerify(e.target.value.trim())}/>
                             <div className={Style.requirements}>
-                                <span ref={titlerRef}>&bull; მინიმუმ 4 სიმბოლო</span>
+                                <span ref={titlerRef}>&bull; მინიმუმ 4 სიმბოლო </span>
                             </div>
                         </div>
                     </div>
